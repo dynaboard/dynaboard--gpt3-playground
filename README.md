@@ -1,23 +1,13 @@
-# Template
-A starting point for creating your own custom Dynaboard template
+# GPT-3 Playground
 
----
+[![Live Demo](https://img.shields.io/badge/live%20demo-view-green)](https://gpt3playground.dynaboard.app/) [![Fork Dynaboard Template](https://img.shields.io/badge/dynaboard-fork-purple)](https://dynaboard.new/dynaboard/dynaboard--gpt3-playground) ![Beginner Level](https://img.shields.io/badge/level-advanced-blue)
 
-# Get Started
-Dynaboard allows you to export a project state and use that as a starting point for future projects. These starting points can be used when creating a new project by importing the file or by pasting in the GitHub repository URL.
+A Dynaboard app which implements a GPT-3 Playground based on the official OpenAI one.
 
-## dynaboard.yml
-This is the configuration file which Dynaboard reads to learn about your template. It must be located at the root of the repository, and has a few required fields:
- - `type`
-   - Only currently supported type is `com.dynaboard/project`
- - `name`
-   - The display name of the template, and default name for new projects using this template
- - `runtimeVersion`
-   - A semver string representing an internal Dynaboard compatability version. This should not be modified
- - `nodes`
-   - A map of node IDs to an object representing the node
-   - Only modified keys are included in the export, to keep the size small
+## Overview
 
-Additionally, you may supply a freetext `description` key. This is currently unused, but may be shown as extra information on the create project screen in the future.
+Performs requests to the [OpenAI API](https://beta.openai.com/docs/api-reference/completions) directly.
 
-In order to ensure continued compatability between your template and the evergreen Dynaboard app, it is suggested that edits be made by creating a template project, editing in Dynaboard and re-exporting.
+## License
+
+[MIT](LICENSE)
