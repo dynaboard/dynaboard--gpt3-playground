@@ -30,7 +30,7 @@ nodes:
     type: CONFIG
     name: OpenAIAPIKey
     properties:
-      value: 6326db2b-ba24-4e46-96f3-0b4ae1edf859
+      value:
       type: secret
   296c1b76-f23c-425f-b12d-d231b123a607:
     type: RESOURCE/HTTP
