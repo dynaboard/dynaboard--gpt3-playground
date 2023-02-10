@@ -26,7 +26,7 @@ nodes:
         - nodeID: 8c707fa9-0c93-4ac8-9060-d26e67a45814
           orderKey: a0
         - nodeID: e6414b79-9e48-4178-969f-9f7b76508998
-          orderKey: Zz
+          orderKey: a1
     properties:
       selectedTheme: null
       showDynaboardBranding: true
@@ -42,10 +42,7 @@ nodes:
       top: '5'
       width: '12'
       height: '3'
-      styles: |-
-        label {
-          text-align: right;
-        }
+      styles: ''
       label: in the style of
       values: |-
         {{
@@ -56,10 +53,7 @@ nodes:
             "Abraham Lincoln",
           ]
         }}
-      displayValues: ''
       value: an easy-to-understand professional writer
-      labelStyle: left
-      labelWidth: 35%
   20073620-98a1-4562-93cc-0a98915288bf:
     type: CONFIG
     name: OpenAIAPIKey
@@ -121,6 +115,7 @@ nodes:
     properties:
       width: '9'
       height: '16'
+      labelStyle: top
       type: textarea
       leftIcon: ''
       rightIcon: ''
@@ -136,6 +131,7 @@ nodes:
       width: '4'
       height: '4'
       label: Max Tokens
+      labelStyle: top
       type: number
       value: '128'
   47ea2e38-bf90-4746-ac54-075c4df8950c:
@@ -144,7 +140,6 @@ nodes:
     properties:
       width: '12'
       height: '4'
-      labelStyle: left
       type: textarea
       leftIcon: ''
       rightIcon: ''
@@ -152,11 +147,7 @@ nodes:
       onBlur: ''
       top: '9'
       label: covering these bullet points
-      labelWidth: 35%
-      styles: |-
-        label {
-          text-align: right;
-        }
+      styles: ''
       value: >-
         - how to build an AI-enabled web app in Dynaboard
 
@@ -171,6 +162,7 @@ nodes:
       width: '12'
       height: '17'
       label: Generated Output
+      labelStyle: top
       type: textarea
       value: >-
         {{ performCompletion.data?.choices[0].text.trim().replace(/\\n/g, '\n')
@@ -318,9 +310,9 @@ nodes:
       height: '4'
       label: Model
       values: '{{listModels.data.data.map(d => d.id)}}'
-      displayValues: ''
       value: curie
       enableFilter: true
+      labelStyle: top
   9f76cf8a-7ebd-4b65-bf9e-d7381f5f9780:
     type: RESOURCE/BROWSER
     name: browser1
@@ -362,6 +354,7 @@ nodes:
       width: '4'
       height: '4'
       label: Temperature
+      labelStyle: top
       type: number
       value: '0.9'
   bcada180-0de9-4925-b838-02596ebc5174:
@@ -370,7 +363,7 @@ nodes:
     properties:
       width: '10'
       height: '4'
-      value: '## GPT-3 Playground'
+      value: '## 🛝 GPT-3 Playground'
       renderMode: markdown
   db78f0e8-fc02-4215-ae96-2089359fe736:
     type: FUNCTION
@@ -412,6 +405,7 @@ nodes:
       width: '12'
       height: '22'
       label: Output
+      labelStyle: top
       type: textarea
       value: >-
         {{ performCompletion.data?.choices[0].text.trim().replace(/\\n/g, '\n')
@@ -463,10 +457,7 @@ nodes:
     properties:
       width: '12'
       height: '3'
-      styles: |-
-        label {
-          text-align: right;
-        }
+      styles: ''
       label: Write me a
       values: |-
         {{
@@ -489,8 +480,6 @@ nodes:
           ]
         }}
       value: '{{whatToWriteInput.values[0]}}'
-      labelStyle: left
-      labelWidth: 35%
   f3ef13c8-62e3-4b6d-bbf8-f5bc1fc35332:
     type: TEXT
     name: text2
