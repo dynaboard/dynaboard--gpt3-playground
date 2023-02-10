@@ -15,8 +15,6 @@ nodes:
           orderKey: a0
         - nodeID: 9f76cf8a-7ebd-4b65-bf9e-d7381f5f9780
           orderKey: a1
-        - nodeID: 0a7f116d-c4a3-45e5-9784-0ec355477bbe
-          orderKey: a2
       config:
         - nodeID: 20073620-98a1-4562-93cc-0a98915288bf
           orderKey: a3
@@ -32,9 +30,6 @@ nodes:
       showDynaboardBranding: true
       robotsTxt: null
       timezone: America
-  0a7f116d-c4a3-45e5-9784-0ec355477bbe:
-    type: RESOURCE/AIRTABLE
-    name: airtable1
   14569cdf-b47a-4715-9817-5618bfc6bff6:
     type: DROPDOWN
     name: inTheStyleOfInput
@@ -78,7 +73,7 @@ nodes:
         actionType: COPY_TO_CLIPBOARD
   296c1b76-f23c-425f-b12d-d231b123a607:
     type: RESOURCE/HTTP
-    name: OpenAI
+    name: OpenAIAPI
     properties:
       method: GET
       bodyType: application/json
@@ -165,7 +160,7 @@ nodes:
       labelStyle: top
       type: textarea
       value: >-
-        {{ performCompletion.data?.choices[0].text.trim().replace(/\\n/g, '\n')
+        {{ performCompletion.data?.choices[0].text.trim().replace(/\\n/g, "\n")
         }}
       placeholder: Your masterpiece will appear here.
       accessoryRight: button
@@ -175,7 +170,7 @@ nodes:
           ref: 245349f2-8677-48cc-9920-d256a4494af5
   523bef03-6420-4dac-8570-51f9d60120ec:
     type: FORM
-    name: form1
+    name: primaryForm
     slots:
       canvas:
         - nodeID: 47ea2e38-bf90-4746-ac54-075c4df8950c
@@ -194,32 +189,9 @@ nodes:
       onSubmit:
         function:
           ref: e0f05983-57c4-4692-9f7e-31e7933cc60c
-  57657691-f009-4708-a0e4-a4e539f9ef5d:
-    type: BUTTON
-    name: button2
-    properties:
-      top: '13'
-      left: '10'
-      width: '3'
-      height: '2'
-      onClick:
-        function:
-          ref: db78f0e8-fc02-4215-ae96-2089359fe736
-      text: Copy
-      leftIcon: ClipboardIcon
-      backgroundColor: text.muted
-      variant: ghost
   77f67777-64fb-421f-aa7f-850df0be61a5:
     type: SPINNER
-    name: spinner1
-    properties:
-      isVisible: '{{listModels.loading}}'
-      left: '11'
-      width: '2'
-      height: '4'
-  7872569d-c4a9-4980-b08d-fe4dccbc64f1:
-    type: SPINNER
-    name: spinner1
+    name: loadingSpinner
     properties:
       isVisible: '{{listModels.loading}}'
       left: '11'
@@ -227,7 +199,7 @@ nodes:
       height: '4'
   84cd2fdb-753d-4629-8bb9-1b954e319d91:
     type: BUTTON
-    name: button1
+    name: submitButton
     properties:
       top: '9'
       width: '3'
@@ -244,23 +216,21 @@ nodes:
     slots:
       canvas:
         - nodeID: 96e5e239-6d55-4faa-8b3c-a24fc626e464
-          orderKey: Zr
-        - nodeID: 57657691-f009-4708-a0e4-a4e539f9ef5d
-          orderKey: Zs
+          orderKey: a1
         - nodeID: 77f67777-64fb-421f-aa7f-850df0be61a5
           orderKey: Zt
         - nodeID: 9d94564b-de70-43dc-a75d-5df235777655
-          orderKey: Zu
+          orderKey: Zz
         - nodeID: 3e3b53d2-aae6-48cd-b5e5-e3d2b1177d64
-          orderKey: Zv
+          orderKey: a0
         - nodeID: b847742d-30d9-4808-8c27-f9df6f00bce1
-          orderKey: Zw
+          orderKey: a0V
         - nodeID: e4cde8a5-347b-4fec-af3c-372544813735
           orderKey: Zx
         - nodeID: e4696eea-a536-475d-89f7-eff0dbf39282
           orderKey: Zy
         - nodeID: bcada180-0de9-4925-b838-02596ebc5174
-          orderKey: a0
+          orderKey: Zs
       functions:
         - nodeID: 2e07c81b-0fac-4e51-9008-b03c98f8be28
           orderKey: Zz
@@ -290,7 +260,7 @@ nodes:
       onFailure: ''
   96e5e239-6d55-4faa-8b3c-a24fc626e464:
     type: TEXT
-    name: text2
+    name: viewSourceText
     properties:
       top: '43'
       width: '12'
@@ -315,26 +285,24 @@ nodes:
       labelStyle: top
   9f76cf8a-7ebd-4b65-bf9e-d7381f5f9780:
     type: RESOURCE/BROWSER
-    name: browser1
+    name: browser
   a7cb10e1-afdb-4719-881b-ca2d36f41f1e:
     type: LOCAL_VARIABLE
     name: promptValue
     properties:
       value: |-
-        {{
-          [
-            "Write me a",
-            whatToWriteInput.value.text,
-            "in the style of",
-            inTheStyleOfInput.value,
-            "covering these bullet points:\n\n",
-            bulletsInput.value,
-            "\n\n====\n\n"
-          ].join(" ")
-        }}
+        [
+          "Write me a",
+          whatToWriteInput.value.text,
+          "in the style of",
+          inTheStyleOfInput.value,
+          "covering these bullet points:\n\n",
+          bulletsInput.value,
+          "\n\n====\n\n",
+        ].join(" ")
   ae16e1e0-8a11-460d-9ce4-1dd367143e2d:
     type: BUTTON
-    name: button2
+    name: magicButton
     properties:
       top: '14'
       width: '3'
@@ -359,7 +327,7 @@ nodes:
       value: '0.9'
   bcada180-0de9-4925-b838-02596ebc5174:
     type: TEXT
-    name: text1
+    name: titleText
     properties:
       width: '10'
       height: '4'
@@ -411,9 +379,13 @@ nodes:
         {{ performCompletion.data?.choices[0].text.trim().replace(/\\n/g, '\n')
         }}
       placeholder: Output will appear here.
+      accessoryRight: button
+      onClickAccessoryRight:
+        function:
+          ref: db78f0e8-fc02-4215-ae96-2089359fe736
   e4cde8a5-347b-4fec-af3c-372544813735:
     type: FORM
-    name: form1
+    name: primaryForm
     slots:
       canvas:
         - nodeID: 39f0bfb4-80e2-48d8-8c59-5ed2c1ff796a
@@ -434,15 +406,13 @@ nodes:
     slots:
       canvas:
         - nodeID: f5afbc01-39de-45e4-ba01-80a4dbe41ada
-          orderKey: a0
-        - nodeID: 7872569d-c4a9-4980-b08d-fe4dccbc64f1
-          orderKey: a2
+          orderKey: a9
         - nodeID: 523bef03-6420-4dac-8570-51f9d60120ec
           orderKey: a6
         - nodeID: 4e6f9bb1-34f5-4c7a-b855-510f1cd805c9
           orderKey: a7
         - nodeID: f3ef13c8-62e3-4b6d-bbf8-f5bc1fc35332
-          orderKey: a8
+          orderKey: a1
       functions:
         - nodeID: e0f05983-57c4-4692-9f7e-31e7933cc60c
           orderKey: a1
@@ -482,15 +452,15 @@ nodes:
       value: '{{whatToWriteInput.values[0]}}'
   f3ef13c8-62e3-4b6d-bbf8-f5bc1fc35332:
     type: TEXT
-    name: text2
+    name: titleText
     properties:
-      width: '10'
+      width: '12'
       height: '4'
       value: '## 🪄 AI Writer'
       renderMode: markdown
   f5afbc01-39de-45e4-ba01-80a4dbe41ada:
     type: TEXT
-    name: text1
+    name: viewSourceText
     properties:
       top: '41'
       width: '12'
