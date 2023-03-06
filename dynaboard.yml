@@ -1,4 +1,4 @@
-runtimeVersion: 0.3.5
+runtimeVersion: 0.4.0
 name: GPT-3 Playground
 description: An OpenAI GPT-3 playground
 type: com.dynaboard/project
@@ -27,13 +27,14 @@ nodes:
           orderKey: a1
     properties:
       selectedTheme: null
-      showDynaboardBranding: true
       robotsTxt: null
       timezone: America
   14569cdf-b47a-4715-9817-5618bfc6bff6:
     type: DROPDOWN
     name: inTheStyleOfInput
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       top: '5'
       width: '12'
       height: '3'
@@ -49,6 +50,11 @@ nodes:
           ]
         }}
       value: an easy-to-understand professional writer
+      enableFilter: '{{false}}'
+      fuzzyMatching: '{{true}}'
+      caseSensitiveMatching: '{{false}}'
+      isRequired: '{{false}}'
+      allowClearing: '{{true}}'
   20073620-98a1-4562-93cc-0a98915288bf:
     type: CONFIG
     name: OpenAIAPIKey
@@ -64,6 +70,8 @@ nodes:
     type: FUNCTION
     name: copyToClipboard
     properties:
+      isEnabled: '{{true}}'
+      loading: '{{false}}'
       action:
         clipboardText: '{{outputInput.value}}'
         path: ''
@@ -71,6 +79,7 @@ nodes:
         targetNode:
           ref: 9f76cf8a-7ebd-4b65-bf9e-d7381f5f9780
         actionType: COPY_TO_CLIPBOARD
+      runOnPageLoad: '{{false}}'
   296c1b76-f23c-425f-b12d-d231b123a607:
     type: RESOURCE/HTTP
     name: OpenAIAPI
@@ -89,6 +98,8 @@ nodes:
     type: FUNCTION
     name: listModels
     properties:
+      isEnabled: '{{true}}'
+      loading: '{{false}}'
       action:
         path: v1/models
         body: ''
@@ -121,6 +132,8 @@ nodes:
     type: INPUT
     name: maxTokensInput
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       top: '38'
       left: '9'
       width: '4'
@@ -129,6 +142,8 @@ nodes:
       labelStyle: top
       type: number
       value: '128'
+      isRequired: '{{false}}'
+      isClearable: '{{false}}'
   47ea2e38-bf90-4746-ac54-075c4df8950c:
     type: INPUT
     name: bulletsInput
@@ -152,7 +167,7 @@ nodes:
     type: INPUT
     name: outputInput
     properties:
-      isEnabled: true
+      isVisible: '{{true}}'
       top: '23'
       width: '12'
       height: '17'
@@ -163,6 +178,8 @@ nodes:
         {{ performCompletion.data?.choices[0].text.trim().replace(/\\n/g, "\n")
         }}
       placeholder: Your masterpiece will appear here.
+      isRequired: '{{false}}'
+      isClearable: '{{false}}'
       accessoryRight: button
       accessoryRightLabel: Copy
       onClickAccessoryRight:
@@ -182,10 +199,12 @@ nodes:
         - nodeID: 14569cdf-b47a-4715-9817-5618bfc6bff6
           orderKey: Zy
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       top: '5'
       width: '12'
       height: '17'
-      borderRadius: 4px
+      backgroundColor: surface.100
       onSubmit:
         function:
           ref: e0f05983-57c4-4692-9f7e-31e7933cc60c
@@ -194,6 +213,7 @@ nodes:
     name: loadingSpinner
     properties:
       isVisible: '{{listModels.loading}}'
+      isEnabled: '{{true}}'
       left: '11'
       width: '2'
       height: '4'
@@ -238,6 +258,11 @@ nodes:
           orderKey: a0
         - nodeID: db78f0e8-fc02-4215-ae96-2089359fe736
           orderKey: a1
+    properties:
+      headerProps: {}
+      leftSidebarProps: {}
+      rightSidebarProps: {}
+      footerProps: {}
   90408881-d778-475f-9538-2075e94f5c28:
     type: FUNCTION
     name: performCompletion
@@ -262,6 +287,8 @@ nodes:
     type: TEXT
     name: viewSourceText
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       top: '43'
       width: '12'
       height: '16'
@@ -275,6 +302,8 @@ nodes:
     type: DROPDOWN
     name: modelInput
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       top: '38'
       width: '4'
       height: '4'
@@ -282,6 +311,10 @@ nodes:
       values: '{{listModels.data.data.map(d => d.id)}}'
       value: curie
       enableFilter: true
+      fuzzyMatching: '{{true}}'
+      caseSensitiveMatching: '{{false}}'
+      isRequired: '{{false}}'
+      allowClearing: '{{true}}'
       labelStyle: top
   9f76cf8a-7ebd-4b65-bf9e-d7381f5f9780:
     type: RESOURCE/BROWSER
@@ -317,6 +350,8 @@ nodes:
     type: INPUT
     name: temperatureInput
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       top: '38'
       left: '5'
       width: '4'
@@ -325,6 +360,8 @@ nodes:
       labelStyle: top
       type: number
       value: '0.9'
+      isRequired: '{{false}}'
+      isClearable: '{{false}}'
   bcada180-0de9-4925-b838-02596ebc5174:
     type: TEXT
     name: titleText
@@ -337,6 +374,8 @@ nodes:
     type: FUNCTION
     name: copyToClipboard
     properties:
+      isEnabled: '{{true}}'
+      loading: '{{false}}'
       action:
         clipboardText: '{{outputInput.value}}'
         path: ''
@@ -344,6 +383,7 @@ nodes:
         targetNode:
           ref: 9f76cf8a-7ebd-4b65-bf9e-d7381f5f9780
         actionType: COPY_TO_CLIPBOARD
+      runOnPageLoad: '{{false}}'
   e0f05983-57c4-4692-9f7e-31e7933cc60c:
     type: FUNCTION
     name: performCompletion
@@ -368,7 +408,7 @@ nodes:
     type: INPUT
     name: outputInput
     properties:
-      isEnabled: true
+      isVisible: '{{true}}'
       top: '14'
       width: '12'
       height: '22'
@@ -379,6 +419,8 @@ nodes:
         {{ performCompletion.data?.choices[0].text.trim().replace(/\\n/g, '\n')
         }}
       placeholder: Output will appear here.
+      isRequired: '{{false}}'
+      isClearable: '{{false}}'
       accessoryRight: button
       onClickAccessoryRight:
         function:
@@ -393,10 +435,12 @@ nodes:
         - nodeID: 84cd2fdb-753d-4629-8bb9-1b954e319d91
           orderKey: a0
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       top: '5'
       width: '12'
       height: '8'
-      borderRadius: 4px
+      backgroundColor: surface.100
       onSubmit:
         function:
           ref: 90408881-d778-475f-9538-2075e94f5c28
@@ -421,10 +465,17 @@ nodes:
       variables:
         - nodeID: a7cb10e1-afdb-4719-881b-ca2d36f41f1e
           orderKey: a0
+    properties:
+      headerProps: {}
+      leftSidebarProps: {}
+      rightSidebarProps: {}
+      footerProps: {}
   f32669ec-e436-41fd-8264-fbf2ee3071fd:
     type: DROPDOWN
     name: whatToWriteInput
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       width: '12'
       height: '3'
       styles: ''
@@ -450,6 +501,11 @@ nodes:
           ]
         }}
       value: '{{whatToWriteInput.values[0]}}'
+      enableFilter: '{{false}}'
+      fuzzyMatching: '{{true}}'
+      caseSensitiveMatching: '{{false}}'
+      isRequired: '{{false}}'
+      allowClearing: '{{true}}'
   f3ef13c8-62e3-4b6d-bbf8-f5bc1fc35332:
     type: TEXT
     name: titleText
@@ -462,6 +518,8 @@ nodes:
     type: TEXT
     name: viewSourceText
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       top: '41'
       width: '12'
       height: '13'
